@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Supply Chain Scan: 20260429-160827-supply-chain</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
+  <style>
+/* Deep Review — canonical stylesheet
+ * Inlined into each generated HTML file by the beautify-review skill.
+ * Edit this file to change the look of all future reviews.
+ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  color: #1f2937;
+  background: #f8f9fb;
+  margin: 0;
+  padding: 2rem 1rem;
+}
+main { max-width: 900px; margin: 0 auto; }
+h1 { font-size: 1.6rem; margin-bottom: 0.5rem; color: #111827; }
+h2 { font-size: 1.35rem; margin-top: 2.5rem; margin-bottom: 1rem; color: #111827; border-bottom: 2px solid #e5e7eb; padding-bottom: 0.4rem; }
+h3 { font-size: 1.1rem; margin-top: 1.5rem; margin-bottom: 0.8rem; }
+hr { border: none; border-top: 2px solid #e5e7eb; margin: 2rem 0; }
+a { color: #2563eb; text-decoration: none; }
+a:hover { text-decoration: underline; }
+code { font-family: "SF Mono", "Fira Code", "Fira Mono", Menlo, Consolas, monospace; font-size: 0.85em; background: #f3f4f6; padding: 0.15em 0.35em; border-radius: 4px; }
+
+/* Code blocks — override Prism defaults */
+pre { margin: 0 !important; border-radius: 0 0 8px 8px !important; }
+pre[class*="language-"] { font-size: 0.78rem; line-height: 1.3; }
+pre code { background: none; padding: 0; }
+
+/* Report metadata table */
+.meta-table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; }
+.meta-table td { padding: 0.35rem 0.6rem; border: 1px solid #e5e7eb; vertical-align: top; }
+.meta-table td:first-child { font-weight: 600; width: 140px; background: #f9fafb; white-space: nowrap; }
+
+/* Cards — every section and finding lives in a card */
+.card { border-radius: 10px; padding: 1.2rem 1.4rem; margin-bottom: 1.2rem; }
+.card-neutral { background: #f1f3f5; border: 1px solid #d5d9e0; }
+.card-critical { background: #ffeef0; border: 1px solid #f5c6cb; }
+.card-important { background: #fff0e0; border: 1px solid #f5d9a8; }
+.card-suggestion { background: #f0f6ff; border: 1px solid #c7d9f5; }
+.card-design { background: #f0faf4; border: 1px solid #b7e4c7; }
+
+/* Severity section headings — colored to match their cards */
+.section-critical { color: #9b1c1c; }
+.section-important { color: #92400e; }
+.section-suggestion { color: #1e40af; }
+.section-design { color: #065f46; }
+
+/* Agent attribution pills */
+.pill { display: inline-block; font-size: 0.72rem; font-weight: 600; padding: 0.15em 0.55em; border-radius: 999px; margin-right: 0.3em; vertical-align: middle; letter-spacing: 0.01em; }
+.pill-claude { background: #e9d5ff; color: #6b21a8; }
+.pill-codex { background: #d1fae5; color: #065f46; }
+.pill-gemini { background: #ffe4e6; color: #9f1239; }
+
+/* Finding titles */
+.finding-title { font-weight: 700; font-size: 1rem; margin-bottom: 0.6rem; line-height: 1.4; }
+.finding-num { font-weight: 800; }
+
+/* Code file header — dark bar above each source code block.
+ * The filename is a GitHub permalink to the displayed line range.
+ * Text color is light gray (#adbac7) for the bar, green (#7ee787)
+ * for the hyperlink — matching GitHub's dark-mode file header. */
+.code-file-header { background: #2d333b; color: #adbac7; font-family: "SF Mono", "Fira Code", Menlo, Consolas, monospace; font-size: 0.75rem; padding: 0.4rem 0.9rem; border-radius: 8px 8px 0 0; margin-top: 0.8rem; }
+.code-file-header a { color: #7ee787; }
+.code-file-header a:hover { text-decoration: underline; }
+
+/* Line numbers (CSS counters) and line highlighting */
+.code-line { display: block; }
+.code-line::before {
+  content: counter(line);
+  counter-increment: line;
+  display: inline-block;
+  width: 3em;
+  margin-right: 0.8em;
+  padding-right: 0.5em;
+  text-align: right;
+  color: #636e7b;
+  border-right: 1px solid #3d4556;
+  user-select: none;
+}
+.line-hl { background: rgba(255, 199, 0, 0.18); }
+
+/* Pilcrow anchor links — hidden until parent is hovered */
+.pilcrow { color: #d1d5db; text-decoration: none; font-weight: 400; margin-left: 0.4em; opacity: 0; transition: opacity 0.15s; }
+h2:hover .pilcrow, h3:hover .pilcrow, .finding-title:hover .pilcrow { opacity: 1; }
+.pilcrow:hover { color: #6b7280; text-decoration: none; }
+
+/* Fix label */
+.fix-label { font-weight: 700; }
+
+/* Agent retro summary table */
+.retro-table { width: 100%; border-collapse: collapse; margin-top: 0.8rem; font-size: 0.9rem; table-layout: fixed; }
+.retro-table th, .retro-table td { padding: 0.45rem 0.7rem; border: 1px solid #e5e7eb; text-align: left; }
+.retro-table th { background: #f3f4f6; font-weight: 600; }
+.retro-table tr:nth-child(even) { background: #f9fafb; }
+
+/* Supply-chain Summary table — first column gets breathing room,
+ * numeric middle columns center, header keeps its label on one line. */
+.summary-table { width: 100%; border-collapse: collapse; margin: 0.4rem 0 0.8rem; font-size: 0.92rem; }
+.summary-table th, .summary-table td {
+  padding: 0.4rem 0.7rem;
+  border: 1px solid #d5d9e0;
+  vertical-align: top;
+  text-align: left;
+}
+.summary-table th { background: rgba(255, 255, 255, 0.65); font-weight: 600; white-space: nowrap; }
+.summary-table td:first-child { min-width: 11rem; white-space: nowrap; }
+.summary-table th:not(:first-child):not(:last-child),
+.summary-table td:not(:first-child):not(:last-child) { text-align: center; }
+
+/* Lists and paragraphs inside cards */
+.card ul, .card ol { margin: 0.4rem 0; padding-left: 1.5rem; }
+.card li { margin-bottom: 0.3rem; }
+.card p { margin: 0.5rem 0; }
+.card p:first-child { margin-top: 0; }
+
+/* Supply-chain issue rows — used by issueList for bullets that
+ * uniformly start with a `file:line` reference. The location renders
+ * in a dark bar above the description so the eye picks up the path
+ * separately from the prose. */
+.issue-list { margin: 0.6rem 0; }
+.issue-row {
+  margin-bottom: 0.7rem;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 6px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.55);
+}
+.issue-loc {
+  background: #2d333b;
+  color: #adbac7;
+  padding: 0.3rem 0.7rem;
+  font-family: "SF Mono", "Fira Code", Menlo, Consolas, monospace;
+  font-size: 0.78rem;
+}
+.issue-loc a { color: #7ee787; text-decoration: none; }
+.issue-loc a:hover { text-decoration: underline; }
+.issue-loc code { background: none; padding: 0; color: inherit; font-size: 1em; }
+.issue-desc { padding: 0.55rem 0.8rem; }
+.issue-desc code { font-size: 0.85em; }
+
+/* Verdict highlight in metadata table */
+.verdict { font-weight: 700; }
+
+/* GitHub reference tooltips — shown on hover for #N links */
+.gh-tooltip {
+  position: absolute;
+  background: #1f2328;
+  color: #e6edf3;
+  padding: 0.55em 0.75em;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  max-width: 380px;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.28);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+.gh-tooltip-state {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.15em 0.5em;
+  border-radius: 999px;
+  margin-right: 0.4em;
+  vertical-align: baseline;
+  white-space: nowrap;
+}
+.gh-state-open { background: #238636; color: #fff; }
+.gh-state-closed { background: #848d97; color: #fff; }
+.gh-state-merged { background: #8957e5; color: #fff; }
+.gh-tooltip-title { vertical-align: baseline; }
+
+/* Mobile */
+@media (max-width: 640px) {
+  body { padding: 1rem 0.5rem; }
+  .card { padding: 0.9rem 1rem; }
+  pre code { font-size: 0.72rem; }
+}
+
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Supply Chain Scan: 20260429-160827-supply-chain</h1>
+
+    <table class="meta-table">
+      <tr><td>Date</td><td>2026-04-29 16:08</td></tr>
+      <tr><td>Repo</td><td><a href="https://github.com/rancher/steve">rancher/steve</a></td></tr>
+      <tr><td>Branch</td><td><code>main</code> @ <a href="https://github.com/rancher/steve/commit/b16d5a71"><code>b16d5a71</code></a></td></tr>
+      <tr><td>Kind</td><td>Supply chain scan</td></tr>
+      <tr><td>Verdict</td><td><span class="verdict">Advisory — 26 open issues.</span> &mdash; No top-tier findings. Workflow permission hardening and unpinned k8s test-fixture images dominate the list.</td></tr>
+    </table>
+
+    <hr>
+
+    <hr>
+    <h2 id="summary">Summary <a href="#summary" class="pilcrow">&#182;</a></h2>
+
+    <div class="card card-neutral">
+    <table class="summary-table">
+      <thead><tr><th>Ecosystem</th><th>Items</th><th>Pinned</th><th>Open issues</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td><a href="#go-modules">Go modules</a></td><td>4 modules (root + 3 in <code>gotools/</code>)</td><td>4 with <code>go.sum</code></td><td>0</td><td>Renovate ✓</td></tr>
+        <tr><td>GitHub Actions <code>uses:</code></td><td>11 references</td><td>11 SHA-pinned</td><td>0</td><td>Renovate ✓</td></tr>
+        <tr><td><a href="#workflow-token-permissions-6">Workflow token permissions</a></td><td>5 workflows</td><td>—</td><td>6 (3 missing block, 3 sensitive-write)</td><td>—</td></tr>
+        <tr><td><a href="#container-images-dockerfile">Container images (Dockerfile)</a></td><td>1 file, 2 FROMs</td><td>2 SHA-digest pinned</td><td>0</td><td>Renovate ✓</td></tr>
+        <tr><td>Container images (k8s test fixtures)</td><td>20 manifest entries</td><td>0</td><td>20 (advisory — test data)</td><td>—</td></tr>
+        <tr><td><a href="#inline-downloads">Inline downloads</a></td><td>2 candidates</td><td>2 (sha256/sha512 verified)</td><td>0</td><td>Renovate <code>digestVersion</code> ✓</td></tr>
+        <tr><td><a href="#run-from-network">Run-from-network</a></td><td>1 (<code>go install</code>)</td><td>1 (Go module proxy + pseudo-version)</td><td>0</td><td>—</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <hr>
+    <h2 id="pinned-dependencies" class="section-design">Pinned dependencies <a href="#pinned-dependencies" class="pilcrow">&#182;</a></h2>
+
+    <div class="card card-design">
+    <h3 id="go-modules">Go modules <a href="#go-modules" class="pilcrow">&#182;</a></h3>
+    <p>Four Go modules live in the repo: the root module <code>github.com/rancher/steve</code> and three tooling modules under <code>gotools/</code> (<code>mockgen</code>, <code>msgp</code>, <code>setup-envtest</code>). Each ships a committed <code>go.sum</code>, so every direct and transitive dependency is hash-verified by the Go toolchain on <code>go mod download</code>.</p>
+    <p>The root <code>go.mod</code> carries five <code>replace</code> directives at lines 7-18. All point to concrete versions or pseudo-versions and remain hash-verified through <code>go.sum</code>:</p>
+    <ul>
+      <li><code>github.com/crewjam/saml =&gt; github.com/rancher/saml v0.4.14</code></li>
+      <li><code>github.com/knative/pkg =&gt; github.com/rancher/pkg v0.0.0-20181214184433-b04c0947ad2f</code> (pseudo-version)</li>
+      <li><code>github.com/matryer/moq =&gt; github.com/rancher/moq v0.0.0-20190404221404-ee5226d43009</code> (pseudo-version)</li>
+      <li><code>github.com/stretchr/testify =&gt; github.com/stretchr/testify v1.10.0</code></li>
+      <li><code>gopkg.in/yaml.v3 =&gt; go.yaml.in/yaml/v3 v3.0.1</code></li>
+      <li>Plus pinned k8s.io overrides at <code>v0.35.4</code> and <code>v0.0.0-20250910181357-589584f1c912</code>.</li>
+    </ul>
+    </div>
+    <div class="card card-design">
+    <h3 id="github-actions">GitHub Actions <a href="#github-actions" class="pilcrow">&#182;</a></h3>
+    <p>All 11 <code>uses:</code> references across the five workflows pin to a 40-hex SHA, with a <code># v…</code> comment for Renovate to track. Examples:</p>
+    <ul>
+      <li><code>actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2</code></li>
+      <li><code>actions/setup-go@4a3601121dd01d1626a1e23e37211e3254c1c06c # v6.4.0</code></li>
+      <li><code>golangci/golangci-lint-action@1e7e51e771db61008b38414a730f564565cf7c20 # v9.2.0</code></li>
+      <li><code>docker/setup-buildx-action@4d04d5d9486b7bd6fa91e7baf45bbb4f8b9deedd # v4</code></li>
+      <li><code>fossas/fossa-action@ff70fe9fe17cbd2040648f1c45e8ec4e4884dcf3 # v1.9.0</code></li>
+      <li><code>rancher-eio/read-vault-secrets@0da85151ad1f19ed7986c41587e45aac1ace74b6 # v3</code></li>
+      <li><code>rancher/renovate-config/.github/workflows/renovate-vault.yml@84bf074154364f80af052ebba8e23614212b79df # release</code> (reusable workflow, SHA-pinned)</li>
+    </ul>
+    </div>
+    <div class="card card-design">
+    <h3 id="container-images-dockerfile">Container images (Dockerfile) <a href="#container-images-dockerfile" class="pilcrow">&#182;</a></h3>
+    <p>Both <code>FROM</code> lines in <code>Dockerfile</code> pin both tag and digest:</p>
+    <div class="issue-list">
+      <div class="issue-row">
+        <div class="issue-loc"><code>Dockerfile:2</code></div>
+        <div class="issue-desc"><code>registry.suse.com/bci/golang:1.25@sha256:feeb8b4f66de0a8ba333ee6a3f0e97b4cefbaf638b2873b29fb270ab5ca8722b</code></div>
+      </div>
+      <div class="issue-row">
+        <div class="issue-loc"><code>Dockerfile:10</code></div>
+        <div class="issue-desc"><code>registry.suse.com/bci/bci-micro:16.1@sha256:4174e994d0458cb799591713348d3d96ec20aeabb33f230a14bf53f2767d5854</code></div>
+      </div>
+    </div>
+    <p>Renovate&#39;s <code>BCI base images</code> package rule keeps the pair updated.</p>
+    </div>
+    <div class="card card-design">
+    <h3 id="inline-downloads">Inline downloads <a href="#inline-downloads" class="pilcrow">&#182;</a></h3>
+    <p>Both helper scripts pin a concrete version, store per-platform digests, and verify them before installing:</p>
+    <ul>
+      <li><code>scripts/install-envtest.sh:6-10,37,39</code> — pins <code>ENVTEST_VERSION=v1.35.0</code>, stores per-platform <code>ENVTEST_SUM_*</code> SHA-512 digests, downloads via <code>curl -sL</code>, then runs <code>sha512sum --check</code> against the stored digest before sideloading.</li>
+      <li><code>scripts/install-k3d.sh:5-13,32,35</code> — pins <code>K3D_VERSION=v5.8.3</code>, stores per-platform SHA-256 digests with <code># renovate: digestVersion=v5.8.3</code> comments, downloads via <code>curl -sfL</code>, then <code>sha256sum --check</code>. Renovate&#39;s custom regex manager refreshes both <code>K3D_VERSION</code> and the digests in lockstep.</li>
+    </ul>
+    </div>
+    <div class="card card-design">
+    <h3 id="run-from-network">Run-from-network <a href="#run-from-network" class="pilcrow">&#182;</a></h3>
+    <div class="issue-list">
+      <div class="issue-row">
+        <div class="issue-loc"><a href="https://github.com/rancher/steve/blob/b16d5a716dbd7900fb83ac9c80a0523ec6b610d9/.github/workflows/ci.yaml#L30"><code>.github/workflows/ci.yaml:30</code></a></div>
+        <div class="issue-desc"><code>go install sigs.k8s.io/controller-runtime/tools/setup-envtest@v0.0.0-20260324065417-8c5081a9b6ba</code>. Pseudo-version (40-hex SHA suffix); the Go module proxy verifies the bytes against the public sumdb on fetch.</div>
+      </div>
+    </div>
+    </div>
+    <div class="card card-design">
+    <h3 id="bot-coverage">Bot coverage <a href="#bot-coverage" class="pilcrow">&#182;</a></h3>
+    <p>Renovate config at <code>.github/renovate.json</code> enables <code>dockerfile</code>, <code>github-actions</code>, <code>custom.regex</code>, and <code>gomod</code> managers. Custom regex covers the <code># renovate:</code> comments in both install scripts, including the <code>digestVersion=</code> directive that keeps the SHA blocks fresh. No Dependabot file is committed; the four ecosystems above are all covered by Renovate.</p>
+    </div>
+    <hr>
+    <h2 id="open-issues" class="section-critical">Open issues <a href="#open-issues" class="pilcrow">&#182;</a></h2>
+
+    <div class="card card-critical">
+    <h3 id="workflow-token-permissions-6">Workflow token permissions (6) <a href="#workflow-token-permissions-6" class="pilcrow">&#182;</a></h3>
+    <p>The default <code>GITHUB_TOKEN</code> ships with <code>contents: write</code> for same-repo events when no <code>permissions:</code> block is declared. Each unscoped workflow grants any compromised step the ability to push code, mint releases, and (on workflows with <code>id-token: write</code>) vend OIDC tokens to external services. The fix is uniform: add <code>permissions: read-all</code> at the workflow level, then escalate per job only where needed.</p>
+    <div class="issue-list">
+      <div class="issue-row">
+        <div class="issue-loc"><a href="https://github.com/rancher/steve/blob/b16d5a716dbd7900fb83ac9c80a0523ec6b610d9/.github/workflows/ci.yaml#L1"><code>.github/workflows/ci.yaml:1</code></a></div>
+        <div class="issue-desc">workflow lacks a top-level <code>permissions:</code> block. Recommend <code>permissions: read-all</code> (no job needs write).</div>
+      </div>
+      <div class="issue-row">
+        <div class="issue-loc"><a href="https://github.com/rancher/steve/blob/b16d5a716dbd7900fb83ac9c80a0523ec6b610d9/.github/workflows/integration-tests.yaml#L1"><code>.github/workflows/integration-tests.yaml:1</code></a></div>
+        <div class="issue-desc">workflow lacks a top-level <code>permissions:</code> block. Recommend <code>permissions: read-all</code> (no job needs write).</div>
+      </div>
+      <div class="issue-row">
+        <div class="issue-loc"><a href="https://github.com/rancher/steve/blob/b16d5a716dbd7900fb83ac9c80a0523ec6b610d9/.github/workflows/release.yaml#L1"><code>.github/workflows/release.yaml:1</code></a></div>
+        <div class="issue-desc">workflow lacks a top-level <code>permissions:</code> block. The <code>release</code> job already declares <code>contents: write</code> at line 11; add <code>permissions: read-all</code> at the workflow level so any future job inherits read-only.</div>
+      </div>
+      <div class="issue-row">
+        <div class="issue-loc"><a href="https://github.com/rancher/steve/blob/b16d5a716dbd7900fb83ac9c80a0523ec6b610d9/.github/workflows/fossa.yml#L10"><code>.github/workflows/fossa.yml:10</code></a></div>
+        <div class="issue-desc">top-level <code>id-token: write</code>. Legitimate (used by <code>rancher-eio/read-vault-secrets</code> to authenticate to Vault), but scope it to the <code>fossa-scanning</code> job rather than the whole workflow.</div>
+      </div>
+      <div class="issue-row">
+        <div class="issue-loc"><a href="https://github.com/rancher/steve/blob/b16d5a716dbd7900fb83ac9c80a0523ec6b610d9/.github/workflows/release.yaml#L12"><code>.github/workflows/release.yaml:12</code></a></div>
+        <div class="issue-desc">job-level <code>contents: write</code>. Legitimate (<code>gh release create</code> needs it). The mechanical finding is correct; surface it here so the matching workflow-level <code>permissions: read-all</code> lands in the same fix.</div>
+      </div>
+      <div class="issue-row">
+        <div class="issue-loc"><a href="https://github.com/rancher/steve/blob/b16d5a716dbd7900fb83ac9c80a0523ec6b610d9/.github/workflows/renovate-vault.yml#L21"><code>.github/workflows/renovate-vault.yml:21</code></a></div>
+        <div class="issue-desc">top-level <code>id-token: write</code>. Legitimate (Vault auth). Move to the <code>call-workflow</code> job for least-privilege.</div>
+      </div>
+    </div>
+    </div>
+    <div class="card card-critical">
+    <h3 id="container-images-in-k8s-test-fixtures-20-advisory">Container images in k8s test fixtures (20, advisory) <a href="#container-images-in-k8s-test-fixtures-20-advisory" class="pilcrow">&#182;</a></h3>
+    <p>All 20 unpinned <code>image:</code> references sit under <code>tests/integration/testdata/</code>. They feed integration tests against ephemeral k3d clusters; the threat model is contained to the test runner, not production. Three of them reach for <code>:latest</code> outright, which can break tests reproducibly when upstream rebuilds — worth pinning for stability even setting aside supply-chain risk.</p>
+    <div class="issue-list">
+      <div class="issue-row">
+        <div class="issue-loc"><a href="https://github.com/rancher/steve/blob/b16d5a716dbd7900fb83ac9c80a0523ec6b610d9/tests/integration/testdata/associateddata/associateddata.manifests.yaml#L23"><code>tests/integration/testdata/associateddata/associateddata.manifests.yaml:23</code></a></div>
+        <div class="issue-desc"><code>nginx:latest</code> (floating tag).</div>
+      </div>
+      <div class="issue-row">
+        <div class="issue-loc"><a href="https://github.com/rancher/steve/blob/b16d5a716dbd7900fb83ac9c80a0523ec6b610d9/tests/integration/testdata/associateddata/associateddata.manifests.yaml#L42"><code>tests/integration/testdata/associateddata/associateddata.manifests.yaml:42</code></a></div>
+        <div class="issue-desc"><code>nginx:latest</code> (floating tag).</div>
+      </div>
+      <div class="issue-row">
+        <div class="issue-loc"><a href="https://github.com/rancher/steve/blob/b16d5a716dbd7900fb83ac9c80a0523ec6b610d9/tests/integration/testdata/associateddata/associateddata.manifests.yaml#L61"><code>tests/integration/testdata/associateddata/associateddata.manifests.yaml:61</code></a></div>
+        <div class="issue-desc"><code>nginx:latest</code> (floating tag).</div>
+      </div>
+      <div class="issue-row">
+        <div class="issue-loc"><a href="https://github.com/rancher/steve/blob/b16d5a716dbd7900fb83ac9c80a0523ec6b610d9/tests/integration/testdata/associations/deployments.manifests.yaml#L26"><code>tests/integration/testdata/associations/deployments.manifests.yaml:26</code></a></div>
+        <div class="issue-desc"><code>docker.io/morspin/forte:v0.1.1</code> (tag, no digest).</div>
+      </div>
+      <div class="issue-row">
+        <div class="issue-loc"><a href="https://github.com/rancher/steve/blob/b16d5a716dbd7900fb83ac9c80a0523ec6b610d9/tests/integration/testdata/associations/deployments.manifests.yaml#L44"><code>tests/integration/testdata/associations/deployments.manifests.yaml:44</code></a></div>
+        <div class="issue-desc"><code>docker.io/morspin/postgres:v0.1.1</code> (tag, no digest).</div>
+      </div>
+      <div class="issue-row">
+        <div class="issue-loc"><a href="https://github.com/rancher/steve/blob/b16d5a716dbd7900fb83ac9c80a0523ec6b610d9/tests/integration/testdata/associations/deployments.manifests.yaml#L62"><code>tests/integration/testdata/associations/deployments.manifests.yaml:62</code></a></div>
+        <div class="issue-desc"><code>docker.io/morspin/socksess:v0.1.1</code> (tag, no digest).</div>
+      </div>
+      <div class="issue-row">
+        <div class="issue-loc"><a href="https://github.com/rancher/steve/blob/b16d5a716dbd7900fb83ac9c80a0523ec6b610d9/tests/integration/testdata/list/common.manifests.yaml#L773"><code>tests/integration/testdata/list/common.manifests.yaml:773</code></a></div>
+        <div class="issue-desc"><code>band/fleetwoodmac:v0.14.2</code> (tag, no digest).</div>
+      </div>
+      <div class="issue-row">
+        <div class="issue-loc"><a href="https://github.com/rancher/steve/blob/b16d5a716dbd7900fb83ac9c80a0523ec6b610d9/tests/integration/testdata/list/common.manifests.yaml#L775"><code>tests/integration/testdata/list/common.manifests.yaml:775</code></a></div>
+        <div class="issue-desc"><code>band/santana:v7.3</code> (tag, no digest).</div>
+      </div>
+      <div class="issue-row">
+        <div class="issue-loc"><a href="https://github.com/rancher/steve/blob/b16d5a716dbd7900fb83ac9c80a0523ec6b610d9/tests/integration/testdata/list/common.manifests.yaml#L777"><code>tests/integration/testdata/list/common.manifests.yaml:777</code></a></div>
+        <div class="issue-desc"><code>band/shakira:v2.13.2</code> (tag, no digest).</div>
+      </div>
+      <div class="issue-row">
+        <div class="issue-loc"><a href="https://github.com/rancher/steve/blob/b16d5a716dbd7900fb83ac9c80a0523ec6b610d9/tests/integration/testdata/list/common.manifests.yaml#L787"><code>tests/integration/testdata/list/common.manifests.yaml:787</code></a></div>
+        <div class="issue-desc"><code>band/fleetwoodmac:v0.14.2</code> (tag, no digest).</div>
+      </div>
+      <div class="issue-row">
+        <div class="issue-loc"><a href="https://github.com/rancher/steve/blob/b16d5a716dbd7900fb83ac9c80a0523ec6b610d9/tests/integration/testdata/list/common.manifests.yaml#L789"><code>tests/integration/testdata/list/common.manifests.yaml:789</code></a></div>
+        <div class="issue-desc"><code>band/santana:v7.1</code> (tag, no digest).</div>
+      </div>
+      <div class="issue-row">
+        <div class="issue-loc"><a href="https://github.com/rancher/steve/blob/b16d5a716dbd7900fb83ac9c80a0523ec6b610d9/tests/integration/testdata/list/common.manifests.yaml#L791"><code>tests/integration/testdata/list/common.manifests.yaml:791</code></a></div>
+        <div class="issue-desc"><code>band/shakira:v2.13.4</code> (tag, no digest).</div>
+      </div>
+      <div class="issue-row">
+        <div class="issue-loc"><a href="https://github.com/rancher/steve/blob/b16d5a716dbd7900fb83ac9c80a0523ec6b610d9/tests/integration/testdata/list/common.manifests.yaml#L801"><code>tests/integration/testdata/list/common.manifests.yaml:801</code></a></div>
+        <div class="issue-desc"><code>band/fleetwoodmac:v0.14.3</code> (tag, no digest).</div>
+      </div>
+      <div class="issue-row">
+        <div class="issue-loc"><a href="https://github.com/rancher/steve/blob/b16d5a716dbd7900fb83ac9c80a0523ec6b610d9/tests/integration/testdata/list/common.manifests.yaml#L803"><code>tests/integration/testdata/list/common.manifests.yaml:803</code></a></div>
+        <div class="issue-desc"><code>band/santana:v7.1</code> (tag, no digest).</div>
+      </div>
+      <div class="issue-row">
+        <div class="issue-loc"><a href="https://github.com/rancher/steve/blob/b16d5a716dbd7900fb83ac9c80a0523ec6b610d9/tests/integration/testdata/list/common.manifests.yaml#L805"><code>tests/integration/testdata/list/common.manifests.yaml:805</code></a></div>
+        <div class="issue-desc"><code>band/shakira:v2.13.2</code> (tag, no digest).</div>
+      </div>
+      <div class="issue-row">
+        <div class="issue-loc"><a href="https://github.com/rancher/steve/blob/b16d5a716dbd7900fb83ac9c80a0523ec6b610d9/tests/integration/testdata/list/common.manifests.yaml#L815"><code>tests/integration/testdata/list/common.manifests.yaml:815</code></a></div>
+        <div class="issue-desc"><code>band/fleetwoodmac:v0.14</code> (tag, no digest).</div>
+      </div>
+      <div class="issue-row">
+        <div class="issue-loc"><a href="https://github.com/rancher/steve/blob/b16d5a716dbd7900fb83ac9c80a0523ec6b610d9/tests/integration/testdata/list/common.manifests.yaml#L817"><code>tests/integration/testdata/list/common.manifests.yaml:817</code></a></div>
+        <div class="issue-desc"><code>band/santana:v7.1.2</code> (tag, no digest).</div>
+      </div>
+      <div class="issue-row">
+        <div class="issue-loc"><a href="https://github.com/rancher/steve/blob/b16d5a716dbd7900fb83ac9c80a0523ec6b610d9/tests/integration/testdata/list/common.manifests.yaml#L819"><code>tests/integration/testdata/list/common.manifests.yaml:819</code></a></div>
+        <div class="issue-desc"><code>band/shakira:v2.13</code> (tag, no digest).</div>
+      </div>
+      <div class="issue-row">
+        <div class="issue-loc"><a href="https://github.com/rancher/steve/blob/b16d5a716dbd7900fb83ac9c80a0523ec6b610d9/tests/integration/testdata/podrestarts/podrestarts.manifests.yaml#L15"><code>tests/integration/testdata/podrestarts/podrestarts.manifests.yaml:15</code></a></div>
+        <div class="issue-desc"><code>rancher/mirrored-library-busybox:1.36.1</code> (tag, no digest).</div>
+      </div>
+      <div class="issue-row">
+        <div class="issue-loc"><a href="https://github.com/rancher/steve/blob/b16d5a716dbd7900fb83ac9c80a0523ec6b610d9/tests/integration/testdata/podrestarts/podrestarts.manifests.yaml#L32"><code>tests/integration/testdata/podrestarts/podrestarts.manifests.yaml:32</code></a></div>
+        <div class="issue-desc"><code>rancher/mirrored-library-busybox:1.36.1</code> (tag, no digest).</div>
+      </div>
+    </div>
+    <p>The <code>band/*</code> images appear to be fictional placeholders — confirm they actually resolve before pinning. If they don&#39;t, the test fixtures themselves are dead weight.</p>
+    </div>
+    <hr>
+    <h2 id="retro-dependency-types-not-explicitly-covered">Retro: dependency types not explicitly covered <a href="#retro-dependency-types-not-explicitly-covered" class="pilcrow">&#182;</a></h2>
+
+    <div class="card card-neutral">
+    <p>The scan surfaced no manifest formats outside the script&#39;s table, and no Phase 2 judgment ran into a case the rules couldn&#39;t classify. Two minor observations worth filing for the queue:</p>
+    <ol>
+      <li><em></em><code>sha512sum --check</code> long-form flag.<em></em> The Phase 2 rules document <code>sha512sum -c</code> but <a href="https://github.com/rancher/steve/blob/b16d5a716dbd7900fb83ac9c80a0523ec6b610d9/scripts/install-envtest.sh#L39"><code>scripts/install-envtest.sh:39</code></a> uses <code>sha512sum --check</code>. The script accepted it (the inline-download verifier was marked ✓), so this is presumably already handled — but the rule text under &quot;Inline downloads&quot; (step 4) should mention long-form <code>--check</code> alongside <code>-c</code> so the next reader knows it&#39;s intentional rather than coincidental.</li>
+      <li><em></em>Reusable workflow <code>uses:</code> references.<em></em> <a href="https://github.com/rancher/steve/blob/b16d5a716dbd7900fb83ac9c80a0523ec6b610d9/.github/workflows/renovate-vault.yml#L25"><code>.github/workflows/renovate-vault.yml:25</code></a> invokes <code>rancher/renovate-config/.github/workflows/renovate-vault.yml@&lt;sha&gt;</code> — a SHA-pinned reusable workflow. The script counted it under the GHA total and treated it as pinned, which is correct. Worth a one-line confirmation in the Phase 1 docs that <code>&lt;owner&gt;/&lt;repo&gt;/path/to/workflow.yml@&lt;sha&gt;</code> is in scope of the same <code>uses:</code> rule, since reusable-workflow refs look superficially different from action refs.</li>
+    </ol>
+    </div>
+  </main>
+  <script>window.Prism = window.Prism || {}; Prism.manual = true;</script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-go.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-diff.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-yaml.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+  <script>
+/* Deep Review — Prism initialization and line-number wrapping.
+ * Inlined into each generated HTML file by the beautify-review skill.
+ * Runs synchronously at the end of <body> — no event listeners.
+ *
+ * Prerequisite: a preceding <script> must set Prism.manual = true
+ * before the Prism core <script> loads.
+ */
+
+Prism.highlightAll();
+
+document.querySelectorAll('pre[data-start]').forEach(function(pre) {
+  var startLine = parseInt(pre.getAttribute('data-start'), 10) || 1;
+  var hlAttr = pre.getAttribute('data-line') || '';
+
+  /* Parse data-line into a Set of line numbers to highlight.
+   * Accepts comma-separated values: "75,76,77" or ranges: "75-84". */
+  var hlLines = new Set();
+  hlAttr.split(',').forEach(function(part) {
+    part = part.trim();
+    if (!part) return;
+    var m = part.match(/^(\d+)-(\d+)$/);
+    if (m) {
+      for (var i = parseInt(m[1], 10); i <= parseInt(m[2], 10); i++) hlLines.add(i);
+    } else {
+      hlLines.add(parseInt(part, 10));
+    }
+  });
+
+  var code = pre.querySelector('code');
+  if (!code) return;
+
+  var html = code.innerHTML;
+  var lines = html.split('\n');
+  /* Strip a trailing empty line that Prism sometimes leaves. */
+  if (lines.length > 0 && lines[lines.length - 1].trim() === '') lines.pop();
+
+  var wrapped = lines.map(function(line, idx) {
+    var lineNum = startLine + idx;
+    var cls = 'code-line' + (hlLines.has(lineNum) ? ' line-hl' : '');
+    return '<span class="' + cls + '">' + line + '</span>';
+  });
+
+  /* Join with '' (empty string) — NOT '\n'.
+   * Inside <pre>, newlines are literal whitespace. Since .code-line uses
+   * display: block, joining with '\n' produces double line spacing. */
+  code.innerHTML = wrapped.join('');
+  pre.style.counterReset = 'line ' + (startLine - 1);
+});
+
+/* GitHub reference tooltips — show title and state on hover for #N links.
+ * Links must have class="gh-ref" and data-title set by the generator. */
+document.querySelectorAll('a.gh-ref[data-title]').forEach(function(link) {
+  var tip = null;
+
+  link.addEventListener('mouseenter', function() {
+    if (tip) return;
+    tip = document.createElement('div');
+    tip.className = 'gh-tooltip';
+
+    var state = link.getAttribute('data-state') || '';
+    var type = link.getAttribute('data-type') || 'issue';
+    var label = state.charAt(0).toUpperCase() + state.slice(1).toLowerCase();
+
+    var pill = document.createElement('span');
+    pill.className = 'gh-tooltip-state gh-state-' + state;
+    pill.textContent = label + (type === 'pr' ? ' PR' : '');
+
+    var title = document.createElement('span');
+    title.className = 'gh-tooltip-title';
+    title.textContent = link.getAttribute('data-title');
+
+    tip.appendChild(pill);
+    tip.appendChild(title);
+    document.body.appendChild(tip);
+
+    var rect = link.getBoundingClientRect();
+    var tw = tip.offsetWidth;
+    var th = tip.offsetHeight;
+    var left = rect.left + window.scrollX;
+    var top = rect.top + window.scrollY - th - 8;
+
+    if (left + tw > window.innerWidth - 12) left = window.innerWidth - tw - 12;
+    if (left < 4) left = 4;
+    if (top < window.scrollY + 4) top = rect.bottom + window.scrollY + 8;
+
+    tip.style.left = left + 'px';
+    tip.style.top = top + 'px';
+    tip.style.opacity = '1';
+  });
+
+  link.addEventListener('mouseleave', function() {
+    if (tip) { tip.remove(); tip = null; }
+  });
+});
+
+  </script>
+</body>
+</html>
