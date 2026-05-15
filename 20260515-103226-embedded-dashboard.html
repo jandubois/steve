@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Deep Review: 20260515-103226-embedded-dashboard</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
+  <style>
+/* Deep Review — canonical stylesheet
+ * Inlined into each generated HTML file by the beautify-review skill.
+ * Edit this file to change the look of all future reviews.
+ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  color: #1f2937;
+  background: #f8f9fb;
+  margin: 0;
+  padding: 2rem 1rem;
+}
+main { max-width: 900px; margin: 0 auto; }
+h1 { font-size: 1.6rem; margin-bottom: 0.5rem; color: #111827; }
+h2 { font-size: 1.35rem; margin-top: 2.5rem; margin-bottom: 1rem; color: #111827; border-bottom: 2px solid #e5e7eb; padding-bottom: 0.4rem; }
+h3 { font-size: 1.1rem; margin-top: 1.5rem; margin-bottom: 0.8rem; }
+hr { border: none; border-top: 2px solid #e5e7eb; margin: 2rem 0; }
+a { color: #2563eb; text-decoration: none; }
+a:hover { text-decoration: underline; }
+code { font-family: "SF Mono", "Fira Code", "Fira Mono", Menlo, Consolas, monospace; font-size: 0.85em; background: #f3f4f6; padding: 0.15em 0.35em; border-radius: 4px; }
+
+/* Code blocks — override Prism defaults */
+pre { margin: 0 !important; border-radius: 0 0 8px 8px !important; }
+pre[class*="language-"] { font-size: 0.78rem; line-height: 1.3; }
+pre code { background: none; padding: 0; }
+
+/* Report metadata table */
+.meta-table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; }
+.meta-table td { padding: 0.35rem 0.6rem; border: 1px solid #e5e7eb; vertical-align: top; }
+.meta-table td:first-child { font-weight: 600; width: 140px; background: #f9fafb; white-space: nowrap; }
+
+/* Cards — every section and finding lives in a card */
+.card { border-radius: 10px; padding: 1.2rem 1.4rem; margin-bottom: 1.2rem; }
+.card-neutral { background: #f1f3f5; border: 1px solid #d5d9e0; }
+.card-critical { background: #ffeef0; border: 1px solid #f5c6cb; }
+.card-important { background: #fff0e0; border: 1px solid #f5d9a8; }
+.card-suggestion { background: #f0f6ff; border: 1px solid #c7d9f5; }
+.card-design { background: #f0faf4; border: 1px solid #b7e4c7; }
+
+/* Severity section headings — colored to match their cards */
+.section-critical { color: #9b1c1c; }
+.section-important { color: #92400e; }
+.section-suggestion { color: #1e40af; }
+.section-design { color: #065f46; }
+
+/* Agent attribution pills */
+.pill { display: inline-block; font-size: 0.72rem; font-weight: 600; padding: 0.15em 0.55em; border-radius: 999px; margin-right: 0.3em; vertical-align: middle; letter-spacing: 0.01em; }
+.pill-claude { background: #e9d5ff; color: #6b21a8; }
+.pill-codex { background: #d1fae5; color: #065f46; }
+.pill-gemini { background: #ffe4e6; color: #9f1239; }
+
+/* Finding titles */
+.finding-title { font-weight: 700; font-size: 1rem; margin-bottom: 0.6rem; line-height: 1.4; }
+.finding-num { font-weight: 800; }
+
+/* Code file header — dark bar above each source code block.
+ * The filename is a GitHub permalink to the displayed line range.
+ * Text color is light gray (#adbac7) for the bar, green (#7ee787)
+ * for the hyperlink — matching GitHub's dark-mode file header. */
+.code-file-header { background: #2d333b; color: #adbac7; font-family: "SF Mono", "Fira Code", Menlo, Consolas, monospace; font-size: 0.75rem; padding: 0.4rem 0.9rem; border-radius: 8px 8px 0 0; margin-top: 0.8rem; }
+.code-file-header a { color: #7ee787; }
+.code-file-header a:hover { text-decoration: underline; }
+
+/* Line numbers (CSS counters) and line highlighting */
+.code-line { display: block; }
+.code-line::before {
+  content: counter(line);
+  counter-increment: line;
+  display: inline-block;
+  width: 3em;
+  margin-right: 0.8em;
+  padding-right: 0.5em;
+  text-align: right;
+  color: #636e7b;
+  border-right: 1px solid #3d4556;
+  user-select: none;
+}
+.line-hl { background: rgba(255, 199, 0, 0.18); }
+
+/* Pilcrow anchor links — hidden until parent is hovered */
+.pilcrow { color: #d1d5db; text-decoration: none; font-weight: 400; margin-left: 0.4em; opacity: 0; transition: opacity 0.15s; }
+h2:hover .pilcrow, h3:hover .pilcrow, .finding-title:hover .pilcrow { opacity: 1; }
+.pilcrow:hover { color: #6b7280; text-decoration: none; }
+
+/* Fix label */
+.fix-label { font-weight: 700; }
+
+/* Agent retro summary table */
+.retro-table { width: 100%; border-collapse: collapse; margin-top: 0.8rem; font-size: 0.9rem; table-layout: fixed; }
+.retro-table th, .retro-table td { padding: 0.45rem 0.7rem; border: 1px solid #e5e7eb; text-align: left; }
+.retro-table th { background: #f3f4f6; font-weight: 600; }
+.retro-table tr:nth-child(even) { background: #f9fafb; }
+
+/* Supply-chain Summary table — first column gets breathing room,
+ * numeric middle columns center, header keeps its label on one line. */
+.summary-table { width: 100%; border-collapse: collapse; margin: 0.4rem 0 0.8rem; font-size: 0.92rem; }
+.summary-table th, .summary-table td {
+  padding: 0.4rem 0.7rem;
+  border: 1px solid #d5d9e0;
+  vertical-align: top;
+  text-align: left;
+}
+.summary-table th { background: rgba(255, 255, 255, 0.65); font-weight: 600; white-space: nowrap; }
+.summary-table td:first-child { min-width: 11rem; white-space: nowrap; }
+.summary-table th:not(:first-child):not(:last-child),
+.summary-table td:not(:first-child):not(:last-child) { text-align: center; }
+
+/* Lists and paragraphs inside cards */
+.card ul, .card ol { margin: 0.4rem 0; padding-left: 1.5rem; }
+.card li { margin-bottom: 0.3rem; }
+.card p { margin: 0.5rem 0; }
+.card p:first-child { margin-top: 0; }
+
+/* Supply-chain issue rows — used by issueList for bullets that
+ * uniformly start with a `file:line` reference. The location renders
+ * in a dark bar above the description so the eye picks up the path
+ * separately from the prose. */
+.issue-list { margin: 0.6rem 0; }
+.issue-row {
+  margin-bottom: 0.7rem;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 6px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.55);
+}
+.issue-loc {
+  background: #2d333b;
+  color: #adbac7;
+  padding: 0.3rem 0.7rem;
+  font-family: "SF Mono", "Fira Code", Menlo, Consolas, monospace;
+  font-size: 0.78rem;
+}
+.issue-loc a { color: #7ee787; text-decoration: none; }
+.issue-loc a:hover { text-decoration: underline; }
+.issue-loc code { background: none; padding: 0; color: inherit; font-size: 1em; }
+.issue-desc { padding: 0.55rem 0.8rem; }
+.issue-desc code { font-size: 0.85em; }
+
+/* Verdict highlight in metadata table */
+.verdict { font-weight: 700; }
+
+/* GitHub reference tooltips — shown on hover for #N links */
+.gh-tooltip {
+  position: absolute;
+  background: #1f2328;
+  color: #e6edf3;
+  padding: 0.55em 0.75em;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  max-width: 380px;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.28);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+.gh-tooltip-state {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.15em 0.5em;
+  border-radius: 999px;
+  margin-right: 0.4em;
+  vertical-align: baseline;
+  white-space: nowrap;
+}
+.gh-state-open { background: #238636; color: #fff; }
+.gh-state-closed { background: #848d97; color: #fff; }
+.gh-state-merged { background: #8957e5; color: #fff; }
+.gh-tooltip-title { vertical-align: baseline; }
+
+/* Mobile */
+@media (max-width: 640px) {
+  body { padding: 1rem 0.5rem; }
+  .card { padding: 0.9rem 1rem; }
+  pre code { font-size: 0.72rem; }
+}
+
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Deep Review: 20260515-103226-embedded-dashboard</h1>
+
+    <table class="meta-table">
+      <tr><td>Date</td><td>2026-05-15 10:32</td></tr>
+      <tr><td>Repo</td><td><a href="https://github.com/rancher/steve">rancher/steve</a></td></tr>
+      <tr><td>Round</td><td>1</td></tr>
+      <tr><td>Author</td><td>Mark Yen &lt;mark.yen@suse.com&gt;</td></tr>
+      <tr><td>Branch</td><td><code>embedded-dashboard</code> (top 3 commits, equivalent to <a href="https://github.com/rancher-sandbox/rancher-desktop-steve/pull/11" class="gh-ref" data-title="Add disable filter to allow exec/logs" data-state="merged" data-type="pr">rancher-sandbox/rancher-desktop-steve#11</a>)</td></tr>
+      <tr><td>Commits</td><td><a href="https://github.com/rancher/steve/commit/039e08a7"><code>039e08a7</code></a> Embed dashboard assets into steve<br><a href="https://github.com/rancher/steve/commit/78be894d"><code>78be894d</code></a> CI: Release workflow: Be explicit about permissions<br><a href="https://github.com/rancher/steve/commit/ab052c21"><code>ab052c21</code></a> Address AI review comments</td></tr>
+      <tr><td>Reviewers</td><td><span class="pill pill-claude">Claude</span> Opus 4.7 (effort: xhigh), <span class="pill pill-codex">Codex</span> GPT 5.5 (effort: xhigh), <span class="pill pill-gemini">Gemini</span> 3.1 Pro (effort: default)</td></tr>
+      <tr><td>Verdict</td><td><span class="verdict">Merge with fixes</span> &mdash; embedded-dashboard approach is sound; runtime correctness gaps in caching, SPA asset handling, build-input freshness, CLI flag honoring, and graceful shutdown should land first.</td></tr>
+      <tr><td>Wall-clock time</td><td><code>29 min 3 s</code></td></tr>
+    </table>
+
+    <hr>
+
+    <hr>
+    <h2 id="executive-summary">Executive Summary <a href="#executive-summary" class="pilcrow">&#182;</a></h2>
+
+    <div class="card card-neutral">
+    <p>This branch turns <code>steve</code> into a single-binary Rancher Desktop launcher: it embeds the dashboard SPA via <code>go:embed</code>, listens on a random localhost port, and rewrites the dashboard&#39;s hard-coded <code>127.0.0.1:6120</code> references on the fly. Build path is overhauled (Docker/Drone → Makefile + GitHub Actions with SHA-pinned actions, two-job least-privilege split, SHA-512 verification of the downloaded dashboard tarball).</p>
+    <p>Five Important findings: the ETag/304 caching path is dead code (<code>Main.Sum</code> is empty for <code>go build</code> binaries); the inherited <code>--http(s)-listen-port</code> flags are silent no-ops; missing assets under enumerated dashboard directories return HTML with <code>text/html</code> instead of 404; bumping <code>DASHBOARD_VERSION</code> in the Makefile does not trigger re-download of the tarball; the Shutdown goroutine can be killed mid-drain when <code>run()</code> returns, so in-flight requests terminate abruptly. Ten Suggestions cover micro-perf, defensive coding, build hygiene, and Strunk&#39;s long-form-flag convention.</p>
+    <p>Structure: Critical 0, Important 5, Suggestions 10, Design Observations 5.</p>
+    </div>
+    <hr>
+    <h2 id="critical-issues" class="section-critical">Critical Issues <a href="#critical-issues" class="pilcrow">&#182;</a></h2>
+
+    <div class="card card-critical">
+    <p>None.</p>
+    </div>
+    <hr>
+    <h2 id="important-issues" class="section-important">Important Issues <a href="#important-issues" class="pilcrow">&#182;</a></h2>
+
+    <div class="card card-important">
+      <div class="finding-title" id="I1">
+        <span class="finding-num">I1.</span> ETag/304 cache path is dead code — <code>Main.Sum</code> is always empty for <code>go build</code> binaries <span class="pill pill-claude">Claude</span> <span class="pill pill-gemini">Gemini</span><a href="#I1" class="pilcrow">&#182;</a>
+      </div>
+      <div class="code-file-header"><a href="https://github.com/rancher/steve/blob/039e08a70319dc688725dd4f5c623504707f2a02/main.go#L147-L163">main.go</a></div>
+      <pre data-start="147" data-line="152-158"><code class="language-go">	}
+	if _, ok := subFS.(fs.ReadFileFS); !ok {
+		return nil, fmt.Errorf(&quot;sub filesystem does not support ReadFile&quot;)
+	}
+	return func(w http.ResponseWriter, r *http.Request) {
+		// Calculate the path inside the dashboard FS to serve.
+		actualPath := strings.TrimPrefix(r.URL.Path, &quot;/&quot;)
+		if _, err := subFS.Open(actualPath); errors.Is(err, fs.ErrNotExist) {
+			// If the file does not exist, serve the index file because this is
+			// a single-page application.
+			actualPath = &quot;index.html&quot;
+		}
+		mimeType := mime.TypeByExtension(path.Ext(actualPath))
+		if !strings.HasPrefix(mimeType, &quot;text/&quot;) {
+			// For non-text files, just serve them directly without rewriting.
+			http.FileServerFS(subFS).ServeHTTP(w, r)
+			return</code></pre>
+    <p><code>runtime/debug.BuildInfo.Main.Sum</code> is the module checksum that the Go proxy computes when it ingests a module version. For binaries produced by <code>go build</code> from a working tree — i.e. exactly the Makefile path at <code>Makefile:30-34</code> — <code>Main.Path</code>, <code>Main.Version</code>, and <code>Main.Sum</code> are all empty. Verified locally: a one-file <code>go build</code> reports <code>Main.Sum=&quot;&quot;</code>. The release binaries therefore ship with <code>etag == &quot;&quot;</code>, the <code>If-None-Match</code> short-circuit at line 177 never fires, and the <code>ETag</code> response header at line 204 is never set. Every HTML/JS asset is re-read and re-rewritten on every browser refresh, with no client-side caching at all.</p>
+      <div class="code-file-header"><a href="https://github.com/rancher/steve/blob/039e08a70319dc688725dd4f5c623504707f2a02/main.go#L172-L182">main.go</a></div>
+      <pre data-start="172" data-line="177"><code class="language-go">				// Since we munged actualPath above, this should only happen if
+				// &quot;index.html&quot; is itself missing.
+				http.NotFound(w, r)
+			} else {
+				http.Error(
+					w,
+					fmt.Sprintf(&quot;could not read %s: %v&quot;, actualPath, err),
+					http.StatusInternalServerError)
+			}
+			return
+		}</code></pre>
+    <p>A secondary defect: even if <code>Main.Sum</code> were populated, RFC 7232 requires ETag values to be quoted, and the body is transformed on the wire (port substitution), which makes the ETag at best a weak validator (<code>W/&quot;...&quot;</code>).</p>
+    <p>Fix: switch to the <code>vcs.revision</code> setting (populated automatically when <code>go build</code> runs against a git checkout, present in CI). Quote and weak-mark it per RFC 7232:</p>
+      <pre><code class="language-go">etag := &quot;&quot;
+if buildInfo, ok := runtimedebug.ReadBuildInfo(); ok {
+    for _, s := range buildInfo.Settings {
+        if s.Key == &quot;vcs.revision&quot; {
+            etag = `W/&quot;` + s.Value + `&quot;`
+            break
+        }
+    }
+}</code></pre>
+    <p>If <code>vcs.revision</code> is not reliable across all distribution channels, fall back to hashing <code>dashboardFiles</code> at startup — the embedded bytes are the real cache key.</p>
+    </div>
+    <div class="card card-important">
+      <div class="finding-title" id="I2">
+        <span class="finding-num">I2.</span> <code>--https-listen-port</code> and <code>--http-listen-port</code> are silent no-ops <span class="pill pill-claude">Claude</span><a href="#I2" class="pilcrow">&#182;</a>
+      </div>
+      <div class="code-file-header"><a href="https://github.com/rancher/steve/blob/039e08a70319dc688725dd4f5c623504707f2a02/main.go#L40-L52">main.go</a></div>
+      <pre data-start="40" data-line="45-47"><code class="language-go">	app.Name = &quot;rancher-desktop-app-dashboard&quot;
+	app.Version = version.FriendlyVersion()
+	app.Usage = &quot;Rancher Desktop dashboard server&quot;
+	app.Description = &quot;This is part of Rancher Desktop 2.x and should not be run manually.&quot;
+	app.Flags = append(
+		stevecli.Flags(&amp;config),
+		debug.Flags(&amp;debugconfig)...)
+	app.Action = run
+
+	if err := app.Run(os.Args); err != nil {
+		logrus.Fatal(err)
+	}
+}</code></pre>
+    <p><code>stevecli.Flags</code> still registers <code>--https-listen-port</code> (default 9443) and <code>--http-listen-port</code> (default 9080) into <code>config.HTTPSListenPort</code> and <code>config.HTTPListenPort</code> respectively. The pre-PR <code>run</code> body honored them via <code>s.ListenAndServe(ctx, config.HTTPSListenPort, config.HTTPListenPort, nil)</code>. The new body always listens on <code>127.0.0.1:0</code> (line 65-71) and never reads either field. The help text exposes both flags, and the user&#39;s input is accepted without complaint — but discarded.</p>
+      <div class="code-file-header"><a href="https://github.com/rancher/steve/blob/039e08a70319dc688725dd4f5c623504707f2a02/main.go#L60-L76">main.go</a></div>
+      <pre data-start="60" data-line="65-71"><code class="language-go">		return err
+	}
+	s.StartAggregation(ctx)
+
+	// Listen on a port on localhost.
+	localhost := net.IPv4(127, 0, 0, 1)
+	listener, err := net.ListenTCP(&quot;tcp&quot;, &amp;net.TCPAddr{IP: localhost, Port: 0})
+	if err != nil {
+		return err
+	}
+	defer listener.Close()
+	port := listener.Addr().(*net.TCPAddr).Port
+
+	// Set up the rewrite handler, to fix up source code that has hard-coded the
+	// default port number.
+	rewriter, err := rewriteHandler(port)
+	if err != nil {</code></pre>
+    <p>The same coupling drags in <code>--ui-path</code>, <code>--offline</code>, <code>--kubeconfig</code>, and other <code>stevecli</code> flags that may or may not apply to an embedded dashboard launcher; future stevecli additions land here automatically.</p>
+    <p>Fix: filter the upstream flag list to the flags this binary actually honors, or declare a purpose-built flag set for the launcher. A minimal filter:</p>
+      <pre><code class="language-go">upstream := stevecli.Flags(&amp;config)
+filtered := upstream[:0]
+for _, f := range upstream {
+    name := strings.Split(f.GetName(), &quot;,&quot;)[0]
+    if name == &quot;https-listen-port&quot; || name == &quot;http-listen-port&quot; {
+        continue
+    }
+    filtered = append(filtered, f)
+}
+app.Flags = append(filtered, debug.Flags(&amp;debugconfig)...)</code></pre>
+    </div>
+    <div class="card card-important">
+      <div class="finding-title" id="I3">
+        <span class="finding-num">I3.</span> Missing assets under enumerated dashboard directories return HTML, not 404 <span class="pill pill-gemini">Gemini</span><a href="#I3" class="pilcrow">&#182;</a>
+      </div>
+      <div class="code-file-header"><a href="https://github.com/rancher/steve/blob/039e08a70319dc688725dd4f5c623504707f2a02/main.go#L155-L180">main.go</a></div>
+      <pre data-start="155" data-line="160-175"><code class="language-go">			// If the file does not exist, serve the index file because this is
+			// a single-page application.
+			actualPath = &quot;index.html&quot;
+		}
+		mimeType := mime.TypeByExtension(path.Ext(actualPath))
+		if !strings.HasPrefix(mimeType, &quot;text/&quot;) {
+			// For non-text files, just serve them directly without rewriting.
+			http.FileServerFS(subFS).ServeHTTP(w, r)
+			return
+		}
+
+		// This is a text file that needs rewriting; read it, replace any
+		// relevant strings, and serve it.  At the moment, embed.FS just stores
+		// the whole thing in memory anyway, so this should not be a problem.
+		contents, err := subFS.(fs.ReadFileFS).ReadFile(actualPath)
+		if err != nil {
+			if errors.Is(err, fs.ErrNotExist) {
+				// Since we munged actualPath above, this should only happen if
+				// &quot;index.html&quot; is itself missing.
+				http.NotFound(w, r)
+			} else {
+				http.Error(
+					w,
+					fmt.Sprintf(&quot;could not read %s: %v&quot;, actualPath, err),
+					http.StatusInternalServerError)
+			}</code></pre>
+    <p>The SPA fallback unconditionally rewrites <code>actualPath</code> to <code>index.html</code> for any missing path under an enumerated top-level dashboard directory (e.g. <code>/_nuxt/</code>, <code>/assets/</code>, <code>/c/</code>). After the rewrite, <code>path.Ext(actualPath)</code> becomes <code>.html</code>, so a request for <code>/_nuxt/old-chunk.js</code> (a stale asset referenced by a cached <code>index.html</code>) returns the SPA shell with <code>Content-Type: text/html</code> and HTTP 200. Browsers fail opaquely when they try to parse an HTML document as a script or stylesheet, and the user sees a broken page rather than a clean 404 that would trigger a reload.</p>
+    <p>Fix: only fall back to the index for paths with no extension (typical of SPA routes); let extensioned 404s propagate as 404s.</p>
+      <pre><code class="language-go">if _, err := subFS.Open(actualPath); err != nil {
+    if path.Ext(strings.TrimRight(actualPath, &quot;/&quot;)) == &quot;&quot; {
+        actualPath = &quot;index.html&quot;
+    }
+    // else: leave actualPath as-is so the FileServerFS path returns 404.
+}</code></pre>
+    </div>
+    <div class="card card-important">
+      <div class="finding-title" id="I4">
+        <span class="finding-num">I4.</span> Dashboard extraction does not depend on Makefile, so version bumps silently embed the old dashboard <span class="pill pill-codex">Codex</span><a href="#I4" class="pilcrow">&#182;</a>
+      </div>
+      <div class="code-file-header"><a href="https://github.com/rancher/steve/blob/039e08a70319dc688725dd4f5c623504707f2a02/Makefile#L1-L7">Makefile</a></div>
+      <pre data-start="1" data-line="1-2"><code class="language-make">DASHBOARD_VERSION := v2.11.1.rd4
+DASHBOARD_CHECKSUM := 22839af7ae78f1c9dbf2559a0be8a6cd355426b6dc31795ce8fd86a4257d4d509778b07b4cee36088c0c5ec072e6c09e2d8e7bbb4d070d0b70cd2c158abfe668
+
+PLATFORMS := darwin-amd64 darwin-arm64 linux-amd64 linux-arm64 windows-amd64
+
+.DELETE_ON_ERROR:
+</code></pre>
+    <p><code>dashboard.tgz</code> has no prerequisites. If a developer bumps <code>DASHBOARD_VERSION</code> or <code>DASHBOARD_CHECKSUM</code> in a workspace with an older <code>dashboard.tgz</code>, make treats the existing file as up-to-date and skips both download and checksum verification. The executable target depends on <code>$(MAKEFILE_LIST)</code> at line 30, so the binary rebuilds — but embeds the old dashboard. Local extraction at line 39 also overlays the new archive on top of any leftover files from the prior version (no <code>rm -rf</code> first).</p>
+      <div class="code-file-header"><a href="https://github.com/rancher/steve/blob/039e08a70319dc688725dd4f5c623504707f2a02/Makefile#L25-L44">Makefile</a></div>
+      <pre data-start="25" data-line="30-39"><code class="language-plaintext">GOLANG_SOURCES := $(shell find pkg -name &#39;*.go&#39;) main.go go.mod go.sum
+# For release/steve-$(GOOS)-$(GOOARCH)
+GOOS = $(firstword $(subst -, ,$(1)))
+GOARCH = $(lastword $(subst -, ,$(1)))
+define EXECUTABLE_RULE
+release/$(1)/steve$(call EXE_SUFFIX,$(1)): dashboard/index.html $$(GOLANG_SOURCES) $$(MAKEFILE_LIST)
+	mkdir -p &quot;$$(@D)&quot;
+	env GOOS=$(call GOOS,$(1)) GOARCH=$(call GOARCH,$(1)) go build  -ldflags &#39;-s -w&#39; -trimpath -o &quot;$$@&quot;
+endef
+$(foreach p,$(PLATFORMS),$(eval $(call EXECUTABLE_RULE,$(p))))
+
+# The dashboard requires the downloaded dashboard archive.
+dashboard/index.html: dashboard.tgz
+	mkdir -p &quot;$(@D)&quot;
+	tar -xzf &quot;$&lt;&quot; -C &quot;$(@D)&quot;
+
+# The dashboard archive is downloaded.
+dashboard.tgz:
+	wget -O &quot;$@&quot; &quot;https://github.com/rancher-sandbox/rancher-desktop-dashboard/releases/download/desktop-$(DASHBOARD_VERSION)/rancher-dashboard-desktop-embed.tar.gz&quot;
+	echo &quot;$(DASHBOARD_CHECKSUM)  dashboard.tgz&quot; | sha512sum -c -</code></pre>
+    <p>Fix: declare the Makefile as a prerequisite for both targets, verify the checksum on every extraction, and replace the extracted tree atomically:</p>
+      <pre><code class="language-diff">-dashboard/index.html: dashboard.tgz
+-    mkdir -p &quot;$(@D)&quot;
+-    tar -xzf &quot;$&lt;&quot; -C &quot;$(@D)&quot;
++dashboard/index.html: dashboard.tgz $(MAKEFILE_LIST)
++    echo &quot;$(DASHBOARD_CHECKSUM)  dashboard.tgz&quot; | sha512sum -c -
++    rm -rf &quot;$(@D)&quot;
++    mkdir -p &quot;$(@D)&quot;
++    tar -xzf &quot;$&lt;&quot; -C &quot;$(@D)&quot;
+
+-dashboard.tgz:
++dashboard.tgz: $(MAKEFILE_LIST)
+     wget -O &quot;$@&quot; &quot;https://github.com/.../desktop-$(DASHBOARD_VERSION)/rancher-dashboard-desktop-embed.tar.gz&quot;
+     echo &quot;$(DASHBOARD_CHECKSUM)  dashboard.tgz&quot; | sha512sum -c -</code></pre>
+    </div>
+    <div class="card card-important">
+      <div class="finding-title" id="I5">
+        <span class="finding-num">I5.</span> Shutdown goroutine can be killed mid-drain when <code>run()</code> returns <span class="pill pill-claude">Claude</span><a href="#I5" class="pilcrow">&#182;</a>
+      </div>
+      <div class="code-file-header"><a href="https://github.com/rancher/steve/blob/039e08a70319dc688725dd4f5c623504707f2a02/main.go#L117-L144">main.go</a></div>
+      <pre data-start="117" data-line="122-139"><code class="language-go">	mux.Handle(&quot;/api/steve-port&quot;, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintf(w, &quot;%d&quot;, port)
+	}))
+
+	// Actually set up the HTTP server, plus a goroutine to shut down once the
+	// context is done.  Afterwards, start the server.
+	server := &amp;http.Server{Handler: mux}
+	go func() {
+		&lt;-ctx.Done()
+		// Wait some time for steve stuff to shut down
+		&lt;-time.After(10 * time.Millisecond)
+		// Shutdown the HTTP server with a small timeout.
+		timeoutCtx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+		defer cancel()
+		if err := server.Shutdown(timeoutCtx); err != nil {
+			logrus.Errorf(&quot;error shutting down server: %v&quot;, err)
+		}
+	}()
+	if err := server.Serve(listener); err != nil &amp;&amp; !errors.Is(err, http.ErrServerClosed) {
+		return err
+	}
+	return nil
+}
+
+// Serve the request from static files, rewriting any instance of the default
+// port to the actual port number.
+func rewriteHandler(port int) (http.HandlerFunc, error) {
+	subFS, err := fs.Sub(dashboardFiles, &quot;dashboard&quot;)</code></pre>
+    <p><code>http.Server.Shutdown</code> causes <code>Serve</code> to return <code>http.ErrServerClosed</code> immediately, but Shutdown itself blocks until idle connections close (up to the 5s timeout). The current code lets <code>run</code> return as soon as <code>Serve</code> unblocks; the goroutine is still inside <code>Shutdown</code>, draining in-flight requests. When <code>main</code> returns (or <code>logrus.Fatal</code> fires), Go terminates the process and kills the shutdown goroutine, severing live connections.</p>
+    <p>Fix: synchronize on the shutdown goroutine before returning.</p>
+      <pre><code class="language-diff">+shutdownDone := make(chan struct{})
+ go func() {
++    defer close(shutdownDone)
+     &lt;-ctx.Done()
+-    &lt;-time.After(10 * time.Millisecond)
+     timeoutCtx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+     defer cancel()
+     if err := server.Shutdown(timeoutCtx); err != nil {
+         logrus.Errorf(&quot;error shutting down server: %v&quot;, err)
+     }
+ }()
+-if err := server.Serve(listener); err != nil &amp;&amp; !errors.Is(err, http.ErrServerClosed) {
+-    return err
+-}
+-return nil
++err = server.Serve(listener)
++&lt;-shutdownDone
++if err != nil &amp;&amp; !errors.Is(err, http.ErrServerClosed) {
++    return err
++}
++return nil</code></pre>
+    <p>While here, drop the <code>10 * time.Millisecond</code> wait — see S3.</p>
+    </div>
+    <hr>
+    <h2 id="suggestions" class="section-suggestion">Suggestions <a href="#suggestions" class="pilcrow">&#182;</a></h2>
+
+    <div class="card card-suggestion">
+      <div class="finding-title" id="S1">
+        <span class="finding-num">S1.</span> Per-request <code>http.FileServerFS</code> construction <span class="pill pill-claude">Claude</span><a href="#S1" class="pilcrow">&#182;</a>
+      </div>
+      <div class="code-file-header"><a href="https://github.com/rancher/steve/blob/039e08a70319dc688725dd4f5c623504707f2a02/main.go#L168-L178">main.go</a></div>
+      <pre data-start="168" data-line="173"><code class="language-go">		// the whole thing in memory anyway, so this should not be a problem.
+		contents, err := subFS.(fs.ReadFileFS).ReadFile(actualPath)
+		if err != nil {
+			if errors.Is(err, fs.ErrNotExist) {
+				// Since we munged actualPath above, this should only happen if
+				// &quot;index.html&quot; is itself missing.
+				http.NotFound(w, r)
+			} else {
+				http.Error(
+					w,
+					fmt.Sprintf(&quot;could not read %s: %v&quot;, actualPath, err),</code></pre>
+    <p>The handler is invoked on every non-HTML/JS request and has no per-request state. Hoist it out of the closure so it is built once.</p>
+      <pre><code class="language-diff">+    fileServer := http.FileServerFS(subFS)
+     return func(w http.ResponseWriter, r *http.Request) {
+         ...
+-            http.FileServerFS(subFS).ServeHTTP(w, r)
++            fileServer.ServeHTTP(w, r)
+             return</code></pre>
+    </div>
+    <div class="card card-suggestion">
+      <div class="finding-title" id="S2">
+        <span class="finding-num">S2.</span> Dead <code>fs.ReadFileFS</code> startup check and redundant type assertion <span class="pill pill-claude">Claude</span><a href="#S2" class="pilcrow">&#182;</a>
+      </div>
+      <div class="code-file-header"><a href="https://github.com/rancher/steve/blob/039e08a70319dc688725dd4f5c623504707f2a02/main.go#L144-L156">main.go</a></div>
+      <pre data-start="144" data-line="149-151"><code class="language-go">	subFS, err := fs.Sub(dashboardFiles, &quot;dashboard&quot;)
+	if err != nil {
+		return nil, fmt.Errorf(&quot;could not create sub filesystem: %w&quot;, err)
+	}
+	if _, ok := subFS.(fs.ReadFileFS); !ok {
+		return nil, fmt.Errorf(&quot;sub filesystem does not support ReadFile&quot;)
+	}
+	return func(w http.ResponseWriter, r *http.Request) {
+		// Calculate the path inside the dashboard FS to serve.
+		actualPath := strings.TrimPrefix(r.URL.Path, &quot;/&quot;)
+		if _, err := subFS.Open(actualPath); errors.Is(err, fs.ErrNotExist) {
+			// If the file does not exist, serve the index file because this is
+			// a single-page application.</code></pre>
+    <p><code>fs.Sub</code> on an <code>embed.FS</code> always returns a value that implements <code>fs.ReadFileFS</code>. The error branch cannot fire, and the second assertion on every request is unnecessary. Type the local variable as <code>fs.ReadFileFS</code> once:</p>
+      <pre><code class="language-diff">-    subFS, err := fs.Sub(dashboardFiles, &quot;dashboard&quot;)
++    raw, err := fs.Sub(dashboardFiles, &quot;dashboard&quot;)
+     if err != nil {
+         return nil, fmt.Errorf(&quot;could not create sub filesystem: %w&quot;, err)
+     }
+-    if _, ok := subFS.(fs.ReadFileFS); !ok {
+-        return nil, fmt.Errorf(&quot;sub filesystem does not support ReadFile&quot;)
+-    }
++    subFS := raw.(fs.ReadFileFS)</code></pre>
+    <p>…then drop the second assertion at line 188.</p>
+      <div class="code-file-header"><a href="https://github.com/rancher/steve/blob/039e08a70319dc688725dd4f5c623504707f2a02/main.go#L183-L191">main.go</a></div>
+      <pre data-start="183" data-line="188"><code class="language-go">		w.Header().Set(&quot;Content-Type&quot;, mimeType)
+		replacer := strings.NewReplacer(
+			&quot;http://127.0.0.1:6120/&quot;,
+			fmt.Sprintf(&quot;http://127.0.0.1:%d/&quot;, port))
+		if _, err := replacer.WriteString(w, string(contents)); err != nil {
+			logrus.Errorf(&quot;could not write response: %v&quot;, err)
+		}
+	}, nil
+}</code></pre>
+    </div>
+    <div class="card card-suggestion">
+      <div class="finding-title" id="S3">
+        <span class="finding-num">S3.</span> Unexplained 10 ms shutdown sleep <span class="pill pill-claude">Claude</span><a href="#S3" class="pilcrow">&#182;</a>
+      </div>
+      <div class="code-file-header"><a href="https://github.com/rancher/steve/blob/039e08a70319dc688725dd4f5c623504707f2a02/main.go#L120-L133">main.go</a></div>
+      <pre data-start="120" data-line="125-128"><code class="language-go">
+	// Actually set up the HTTP server, plus a goroutine to shut down once the
+	// context is done.  Afterwards, start the server.
+	server := &amp;http.Server{Handler: mux}
+	go func() {
+		&lt;-ctx.Done()
+		// Wait some time for steve stuff to shut down
+		&lt;-time.After(10 * time.Millisecond)
+		// Shutdown the HTTP server with a small timeout.
+		timeoutCtx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+		defer cancel()
+		if err := server.Shutdown(timeoutCtx); err != nil {
+			logrus.Errorf(&quot;error shutting down server: %v&quot;, err)
+		}</code></pre>
+    <p>The comment names neither the resource being waited on nor any invariant the 10 ms is meant to establish. Steve&#39;s shutdown is driven by <code>ctx</code> cancellation elsewhere; if a specific teardown order is required, encode it (e.g. a <code>steveDone</code> channel). Otherwise remove the line — <code>http.Server.Shutdown</code> already drains in-flight handlers under its own 5 s timeout (line 130).</p>
+      <div class="code-file-header"><a href="https://github.com/rancher/steve/blob/039e08a70319dc688725dd4f5c623504707f2a02/main.go#L125-L135">main.go</a></div>
+      <pre data-start="125" data-line="130"><code class="language-go">		&lt;-ctx.Done()
+		// Wait some time for steve stuff to shut down
+		&lt;-time.After(10 * time.Millisecond)
+		// Shutdown the HTTP server with a small timeout.
+		timeoutCtx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+		defer cancel()
+		if err := server.Shutdown(timeoutCtx); err != nil {
+			logrus.Errorf(&quot;error shutting down server: %v&quot;, err)
+		}
+	}()
+	if err := server.Serve(listener); err != nil &amp;&amp; !errors.Is(err, http.ErrServerClosed) {</code></pre>
+    </div>
+    <div class="card card-suggestion">
+      <div class="finding-title" id="S4">
+        <span class="finding-num">S4.</span> <code>mux.Handle(&quot;/c/&quot;, rewriter)</code> panics if the dashboard ever adds a top-level <code>c/</code> <span class="pill pill-claude">Claude</span><a href="#S4" class="pilcrow">&#182;</a>
+      </div>
+      <div class="code-file-header"><a href="https://github.com/rancher/steve/blob/039e08a70319dc688725dd4f5c623504707f2a02/main.go#L96-L106">main.go</a></div>
+      <pre data-start="96" data-line="101"><code class="language-go">	mux.Handle(&quot;/{$}&quot;, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		http.Redirect(w, r, &quot;/c/local/explorer&quot;, http.StatusMovedPermanently)
+	}))
+	// Set up a handler for any cluster explorer, which gets passed to the rewriter.
+	mux.Handle(&quot;/c/&quot;, rewriter)
+
+	// Enumerate all (top-level) entries in the dashboard FS, and handle them
+	// individually.  This is required so that all unknown paths get passed to the
+	// steve API handler instead.
+	files, err := dashboardFiles.ReadDir(&quot;dashboard&quot;)
+	if err != nil {</code></pre>
+    <p><code>http.ServeMux.Handle</code> panics on duplicate pattern registration. Today no top-level dashboard directory is named <code>c/</code>, but a future dashboard release can crash the launcher at startup.</p>
+      <pre><code class="language-diff">+for _, f := range files {
++    pattern := &quot;/&quot; + f.Name()
++    if f.IsDir() {
++        pattern += &quot;/&quot;
++    }
++    if pattern == &quot;/c/&quot; {
++        continue // already registered above
++    }
++    mux.Handle(pattern, rewriter)
++}</code></pre>
+    </div>
+    <div class="card card-suggestion">
+      <div class="finding-title" id="S5">
+        <span class="finding-num">S5.</span> <code>/api/steve-port</code> handler is documented as obsolete <span class="pill pill-claude">Claude</span><a href="#S5" class="pilcrow">&#182;</a>
+      </div>
+      <div class="code-file-header"><a href="https://github.com/rancher/steve/blob/039e08a70319dc688725dd4f5c623504707f2a02/main.go#L112-L125">main.go</a></div>
+      <pre data-start="112" data-line="117-120"><code class="language-go">		} else {
+			mux.Handle(&quot;/&quot;+f.Name(), http.HandlerFunc(rewriter))
+		}
+	}
+	// Handle the steve-port API, which is no longer used.
+	mux.Handle(&quot;/api/steve-port&quot;, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintf(w, &quot;%d&quot;, port)
+	}))
+
+	// Actually set up the HTTP server, plus a goroutine to shut down once the
+	// context is done.  Afterwards, start the server.
+	server := &amp;http.Server{Handler: mux}
+	go func() {
+		&lt;-ctx.Done()</code></pre>
+    <p>If the comment is accurate, the handler is dead code and should be removed. If it is kept for older Rancher Desktop builds, the comment should say which builds and until when. The current wording invites a future reader to delete it.</p>
+    </div>
+    <div class="card card-suggestion">
+      <div class="finding-title" id="S6">
+        <span class="finding-num">S6.</span> Hard-coded <code>127.0.0.1:6120/</code> replacement misses the trailing-slash-less form <span class="pill pill-gemini">Gemini</span><a href="#S6" class="pilcrow">&#182;</a>
+      </div>
+      <div class="code-file-header"><a href="https://github.com/rancher/steve/blob/039e08a70319dc688725dd4f5c623504707f2a02/main.go#L151-L163">main.go</a></div>
+      <pre data-start="151" data-line="156-158"><code class="language-go">	return func(w http.ResponseWriter, r *http.Request) {
+		// Calculate the path inside the dashboard FS to serve.
+		actualPath := strings.TrimPrefix(r.URL.Path, &quot;/&quot;)
+		if _, err := subFS.Open(actualPath); errors.Is(err, fs.ErrNotExist) {
+			// If the file does not exist, serve the index file because this is
+			// a single-page application.
+			actualPath = &quot;index.html&quot;
+		}
+		mimeType := mime.TypeByExtension(path.Ext(actualPath))
+		if !strings.HasPrefix(mimeType, &quot;text/&quot;) {
+			// For non-text files, just serve them directly without rewriting.
+			http.FileServerFS(subFS).ServeHTTP(w, r)
+			return</code></pre>
+    <p>The replacer only matches the form with a trailing slash. A JS literal like <code>const api = &quot;http://127.0.0.1:6120&quot;;</code> or a CSS <code>url(http://127.0.0.1:6120)</code> slips through unchanged and points the client at the wrong port. Cheapest mitigation: add the slash-less variant to the replacer pairs.</p>
+    </div>
+    <div class="card card-suggestion">
+      <div class="finding-title" id="S7">
+        <span class="finding-num">S7.</span> <code>.gitignore</code> no longer ignores the locally built <code>steve</code> binary <span class="pill pill-gemini">Gemini</span><a href="#S7" class="pilcrow">&#182;</a>
+      </div>
+      <pre><code class="language-diff"> .idea
+-steve
++/dashboard/</code></pre>
+    <p>The Makefile writes to <code>release/</code>, but a developer who runs <code>go build</code> in the repository root produces <code>./steve</code> (or <code>./steve.exe</code>), which would now show up under <code>git status</code> and could be committed by accident. Restoring the entry costs nothing.</p>
+    </div>
+    <div class="card card-suggestion">
+      <div class="finding-title" id="S8">
+        <span class="finding-num">S8.</span> Stray double space in <code>go build</code> invocation <span class="pill pill-claude">Claude</span><a href="#S8" class="pilcrow">&#182;</a>
+      </div>
+      <div class="code-file-header"><a href="https://github.com/rancher/steve/blob/039e08a70319dc688725dd4f5c623504707f2a02/Makefile#L27-L37">Makefile</a></div>
+      <pre data-start="27" data-line="32"><code class="language-make">GOOS = $(firstword $(subst -, ,$(1)))
+GOARCH = $(lastword $(subst -, ,$(1)))
+define EXECUTABLE_RULE
+release/$(1)/steve$(call EXE_SUFFIX,$(1)): dashboard/index.html $$(GOLANG_SOURCES) $$(MAKEFILE_LIST)
+	mkdir -p &quot;$$(@D)&quot;
+	env GOOS=$(call GOOS,$(1)) GOARCH=$(call GOARCH,$(1)) go build  -ldflags &#39;-s -w&#39; -trimpath -o &quot;$$@&quot;
+endef
+$(foreach p,$(PLATFORMS),$(eval $(call EXECUTABLE_RULE,$(p))))
+
+# The dashboard requires the downloaded dashboard archive.
+dashboard/index.html: dashboard.tgz</code></pre>
+    <p>Cosmetic. Remove the duplicate space.</p>
+    </div>
+    <div class="card card-suggestion">
+      <div class="finding-title" id="S9">
+        <span class="finding-num">S9.</span> <code>wget</code> invocation is noisy and uses short-form <code>-O</code> <span class="pill pill-claude">Claude</span><a href="#S9" class="pilcrow">&#182;</a>
+      </div>
+      <div class="code-file-header"><a href="https://github.com/rancher/steve/blob/039e08a70319dc688725dd4f5c623504707f2a02/Makefile#L38-L48">Makefile</a></div>
+      <pre data-start="38" data-line="43"><code class="language-make">	mkdir -p &quot;$(@D)&quot;
+	tar -xzf &quot;$&lt;&quot; -C &quot;$(@D)&quot;
+
+# The dashboard archive is downloaded.
+dashboard.tgz:
+	wget -O &quot;$@&quot; &quot;https://github.com/rancher-sandbox/rancher-desktop-dashboard/releases/download/desktop-$(DASHBOARD_VERSION)/rancher-dashboard-desktop-embed.tar.gz&quot;
+	echo &quot;$(DASHBOARD_CHECKSUM)  dashboard.tgz&quot; | sha512sum -c -
+
+.PHONY: clean
+clean:
+	rm -rf release dashboard dashboard.tgz</code></pre>
+    <p>Default <code>wget</code> output writes a per-100 KB progress meter that clutters CI logs. The project&#39;s long-form-flag convention also asks for the spelled-out option.</p>
+      <pre><code class="language-diff">-    wget -O &quot;$@&quot; &quot;https://github.com/.../desktop-$(DASHBOARD_VERSION)/rancher-dashboard-desktop-embed.tar.gz&quot;
++    wget --no-verbose --output-document=&quot;$@&quot; &quot;https://github.com/.../desktop-$(DASHBOARD_VERSION)/rancher-dashboard-desktop-embed.tar.gz&quot;</code></pre>
+    </div>
+    <div class="card card-suggestion">
+      <div class="finding-title" id="S10">
+        <span class="finding-num">S10.</span> <code>os.Stdout = os.Stderr</code> reassignment is non-obvious <span class="pill pill-claude">Claude</span><a href="#S10" class="pilcrow">&#182;</a>
+      </div>
+      <div class="code-file-header"><a href="https://github.com/rancher/steve/blob/039e08a70319dc688725dd4f5c623504707f2a02/main.go#L80-L93">main.go</a></div>
+      <pre data-start="80" data-line="85-88"><code class="language-go">	// Print the port number to stdout, and then close it, so that the caller
+	// can safely read it.
+	if _, err := fmt.Printf(&quot;%d\n&quot;, port); err != nil {
+		return err
+	}
+	if err := os.Stdout.Close(); err != nil {
+		return err
+	}
+	os.Stdout = os.Stderr
+	logrus.Infof(&quot;Steve is listening on port %d&quot;, port)
+
+	// Set up the mux.
+	mux := http.NewServeMux()
+	// Set the the default handler, to use the steve APIs.</code></pre>
+    <p>The intent — redirect any later <code>fmt.Print*</code> calls to stderr now that fd 1 is closed — is reasonable but invisible. A one-line comment saves the next reader a detour through git history.</p>
+    </div>
+    <hr>
+    <h2 id="design-observations" class="section-design">Design Observations <a href="#design-observations" class="pilcrow">&#182;</a></h2>
+
+    <div class="card card-design">
+    <h3 id="concerns">Concerns <a href="#concerns" class="pilcrow">&#182;</a></h3>
+    <p><strong>The rewriter is a band-aid for a hard-coded port in the dashboard build</strong> <em>(future)</em> <span class="pill pill-claude">Claude</span></p>
+    <p>The dashboard ships JS/HTML with literal <code>http://127.0.0.1:6120/</code> strings, and the launcher stream-rewrites them on every text-asset response. This is the right band-aid but cements an awkward boundary: the SPA contains URLs it cannot use, and steve is on the hook to stream-rewrite static assets forever. The handler at <a href="https://github.com/rancher/steve/blob/039e08a70319dc688725dd4f5c623504707f2a02/main.go#L117-L120"><code>main.go:117-120</code></a> already exposes the runtime port at <code>/api/steve-port</code>; making the dashboard discover its own origin at startup would eliminate the rewriter, the ETag question (I1) entirely, and the per-asset <code>strings.NewReplacer</code> cost. Worth raising upstream in <code>rancher-sandbox/rancher-desktop-dashboard</code>.</p>
+    <p><em></em><code>stevecli.Flags</code> couples the launcher to flags it does not honor<em></em> <em>(in-scope)</em> <span class="pill pill-claude">Claude</span></p>
+    <p>Pulling the entire <code>stevecli</code> flag set wholesale (I2) means every upstream change to that flag set lands here, regardless of whether this binary can act on it. A purpose-built <code>dashboardcli</code> package — or a thin wrapper that re-exports only the flags this binary actually consumes — makes the contract explicit and keeps future steve flag additions opt-in.</p>
+    <p><strong>Path hijacking via top-level dashboard directories</strong> <em>(future)</em> <span class="pill pill-gemini">Gemini</span></p>
+    <p>Top-level directories in the embedded dashboard are routed via <code>mux.Handle(&quot;/&quot;+f.Name()+&quot;/&quot;, rewriter)</code>. If the dashboard repository ever introduces a top-level directory named <code>v1</code>, <code>api</code>, or <code>k8s</code>, it will hijack the corresponding steve API routes. A startup check against a reserved-prefix list would catch this at boot rather than at first request.</p>
+    <h3 id="strengths">Strengths <a href="#strengths" class="pilcrow">&#182;</a></h3>
+    <p><strong>Makefile shape</strong> <span class="pill pill-claude">Claude</span> — Per-platform explicit rules, <code>.DELETE_ON_ERROR</code> so checksum failures self-clean, and <code>$(MAKEFILE_LIST)</code> as an executable-target prerequisite so Makefile edits trigger rebuilds. (I4 addresses one remaining gap.) <em>(in-scope)</em></p>
+    <p><strong>Two-job release workflow</strong> <span class="pill pill-claude">Claude</span> — Splitting into a <code>build</code> job with <code>contents: read</code> and a separate <code>release</code> job with <code>contents: write</code> is the right least-privilege shape. The top-level empty <code>permissions: {}</code> adds a good belt-and-braces default. <em>(in-scope)</em></p>
+    <p><strong>Dashboard checksum lives next to its version</strong> <span class="pill pill-claude">Claude</span> — <code>Makefile:1-2</code> puts the security-relevant pair in one place, making it hard to bump one without the other. <em>(in-scope)</em></p>
+    <p><strong>Outer mux preserves steve routing</strong> <span class="pill pill-codex">Codex</span> — Explicitly mounting only the embedded dashboard&#39;s top-level static paths (rather than catching every unknown URL as an SPA fallback) keeps the existing steve API surface intact. <em>(in-scope)</em></p>
+    <p><em></em><code>go:embed</code> + dynamic localhost port<em></em> <span class="pill pill-gemini">Gemini</span> — Embedding the dashboard via <code>go:embed</code> collapses the deployment artifact into a single self-contained binary, and the random localhost port keeps the dashboard off the network. <em>(in-scope)</em></p>
+    </div>
+    <hr>
+    <h2 id="testing-assessment">Testing Assessment <a href="#testing-assessment" class="pilcrow">&#182;</a></h2>
+
+    <div class="card card-neutral">
+    <p>The fork has zero <code>*_test.go</code> files (pre-existing — see Repo Overview). This branch adds non-trivial routing logic with no tests. Prioritized gaps, in order of value:</p>
+    <ol>
+      <li><strong>Rewrite path</strong> — assert that <code>http://127.0.0.1:6120/foo</code> in <code>index.html</code> is rewritten to <code>http://127.0.0.1:&lt;port&gt;/foo</code>, and that <code>Content-Type</code> is set correctly for <code>.html</code> and <code>.js</code>.</li>
+      <li><strong>SPA fallback</strong> — request a deep URL like <code>/c/local/explorer/anything</code> and assert the response is the rewritten <code>index.html</code>. Add a second case that asserts a missing <code>.js</code> returns 404 (covering I3).</li>
+      <li><strong>Non-text asset path</strong> — request an embedded <code>.png</code> and assert verbatim bytes with the right <code>Content-Type</code>.</li>
+      <li><strong>ETag</strong> — once I1 is fixed, assert that a matching <code>If-None-Match</code> returns 304 with no body.</li>
+      <li><strong>Mux composition</strong> — <code>/</code> returns 302 to <code>/c/local/explorer</code>; <code>/api/steve-port</code> returns the listening port; an unknown <code>/foo</code> reaches the steve handler.</li>
+    </ol>
+    <p>These are pure handler tests; <code>httptest.NewRecorder</code> plus the embedded FS is enough — no Kubernetes apiserver needed.</p>
+    <p>Codex verified that <code>go test ./...</code> passes and that <code>make release/steve.sha512sum</code> builds all five platform archives.</p>
+    </div>
+    <hr>
+    <h2 id="documentation-assessment">Documentation Assessment <a href="#documentation-assessment" class="pilcrow">&#182;</a></h2>
+
+    <div class="card card-neutral">
+    <ul>
+      <li><a href="https://github.com/rancher/steve/blob/039e08a70319dc688725dd4f5c623504707f2a02/main.go#L1-L5"><code>main.go:1-5</code></a> adds a serviceable package-level godoc.</li>
+      <li><code>rewriteHandler</code> has a one-sentence doc.</li>
+      <li>The Makefile is well-commented for a Makefile.</li>
+      <li><code>.github/workflows/release.yml</code> has no comment explaining why the two-job split exists; a one-line top comment (&quot;<code>build</code> runs unprivileged; <code>release</code> is the only job with <code>contents: write</code>&quot;) would help future readers.</li>
+      <li>No README change. Per <code>app.Description = &quot;This is part of Rancher Desktop 2.x and should not be run manually.&quot;</code>, end users should not invoke this binary directly — but the help text inherited from <code>stevecli</code> still exposes the now-no-op <code>--http(s)-listen-port</code> flags (tied to I2).</li>
+    </ul>
+    </div>
+    <hr>
+    <h2 id="commit-structure">Commit Structure <a href="#commit-structure" class="pilcrow">&#182;</a></h2>
+
+    <div class="card card-neutral">
+    <p>Three commits, clean for review:</p>
+    <ul>
+      <li><a href="https://github.com/rancher/steve/commit/039e08a7"><code>039e08a7</code></a> — bulk feature (embed dashboard, rewrite handler, Makefile).</li>
+      <li><a href="https://github.com/rancher/steve/commit/78be894d"><code>78be894d</code></a> — focused permissions tightening on the release workflow.</li>
+      <li><a href="https://github.com/rancher/steve/commit/ab052c21"><code>ab052c21</code></a> — conventional post-AI-review fixup commit.</li>
+    </ul>
+    <p>No squash necessary.</p>
+    </div>
+    <hr>
+    <h2 id="acknowledged-limitations">Acknowledged Limitations <a href="#acknowledged-limitations" class="pilcrow">&#182;</a></h2>
+
+    <div class="card card-neutral">
+    <ul>
+      <li><a href="https://github.com/rancher/steve/blob/039e08a70319dc688725dd4f5c623504707f2a02/main.go#L117"><code>main.go:117</code></a> — <code>// Handle the steve-port API, which is no longer used.</code> The author has acknowledged the endpoint is obsolete; this branch keeps it for compatibility. S5 promotes it not because the limitation is wrong, but because the comment does not say <em>why</em> it stays.</li>
+      <li><a href="https://github.com/rancher/steve/blob/039e08a70319dc688725dd4f5c623504707f2a02/main.go#L186-L187"><code>main.go:186-187</code></a> — <code>// At the moment, embed.FS just stores the whole thing in memory anyway, so this should not be a problem.</code> The author acknowledges the read-then-replace cost is tolerable given embed.FS&#39;s implementation. Reasonable; nothing to do.</li>
+    </ul>
+    </div>
+    <hr>
+    <h2 id="unresolved-feedback">Unresolved Feedback <a href="#unresolved-feedback" class="pilcrow">&#182;</a></h2>
+
+    <div class="card card-neutral">
+    <p>None. The &quot;Address AI review comments&quot; commit (<a href="https://github.com/rancher/steve/commit/ab052c21"><code>ab052c21</code></a>) on this branch already incorporates earlier feedback; the rancher-sandbox PR has no inline review comments yet.</p>
+    </div>
+    <hr>
+    <h2 id="agent-performance-retro">Agent Performance Retro <a href="#agent-performance-retro" class="pilcrow">&#182;</a></h2>
+
+    <div class="card card-neutral">
+    <h3 id="claude"><span class="pill pill-claude">Claude</span> <a href="#claude" class="pilcrow">&#182;</a></h3>
+    <p>Claude carried this review: it raised three of the five Important findings (I1, I2, I5) plus all but two Suggestions, and was the only agent to spot the silent no-op CLI flags (I2) and the abrupt shutdown teardown (I5). Calibration was right on — every finding survived verification against the current code with no downgrades. Claude&#39;s &quot;Strengths&quot; claim that the SPA fallback works for trailing slashes was correct and resolved a direct contradiction with Gemini.</p>
+    <h3 id="codex"><span class="pill pill-codex">Codex</span> <a href="#codex" class="pilcrow">&#182;</a></h3>
+    <p>Codex produced exactly one finding (I4) but it was load-bearing: the Makefile dependency gap that lets a <code>DASHBOARD_VERSION</code> bump silently embed the old dashboard. Neither other agent noticed. Codex also did real verification work — <code>go test ./...</code> and <code>make release/steve.sha512sum</code> — which gave the report a concrete pass/fail data point. Its finding density is low, but its hit rate was 100 % and the unique insight justified the slot.</p>
+    <h3 id="gemini"><span class="pill pill-gemini">Gemini</span> <a href="#gemini" class="pilcrow">&#182;</a></h3>
+    <p>Gemini found two genuine issues (I1 ETag and I3 SPA-fallback content-type bug); the I3 catch was unique and important. It also produced one false positive (a claim that <code>fs.Sub(...).Open(&quot;foo/&quot;)</code> returns <code>fs.ErrInvalid</code> and breaks the SPA fallback) which a quick stdlib test disproved — the result is actually <code>fs.ErrNotExist</code> and the code works. Gemini did not run <code>git blame</code> (a known limitation due to daily quota); Claude and Codex covered regression labeling.</p>
+    <h3 id="summary">Summary <a href="#summary" class="pilcrow">&#182;</a></h3>
+    <table class="retro-table">
+      <thead><tr><th></th><th><span class="pill pill-claude">Claude</span> Opus 4.7</th><th><span class="pill pill-codex">Codex</span> GPT 5.5</th><th><span class="pill pill-gemini">Gemini</span> 3.1 Pro</th></tr></thead>
+      <tbody>
+        <tr><td>Duration</td><td>12m 48s</td><td>9m 03s</td><td>—</td></tr>
+        <tr><td>Findings</td><td>3I 8S</td><td>1I</td><td>2I 2S</td></tr>
+        <tr><td>Tool calls</td><td>29 (Bash 21, Read 8)</td><td>55 (shell 48, stdin 7)</td><td>—</td></tr>
+        <tr><td>Design observations</td><td>4</td><td>1</td><td>2</td></tr>
+        <tr><td>False positives</td><td>0</td><td>0</td><td>1</td></tr>
+        <tr><td>Unique insights</td><td>9</td><td>1</td><td>2</td></tr>
+        <tr><td>Files reviewed</td><td>10</td><td>10</td><td>10</td></tr>
+        <tr><td>Coverage misses</td><td>0</td><td>0</td><td>0</td></tr>
+        <tr><td><strong>Totals</strong></td><td><strong>3I 8S</strong></td><td><strong>1I</strong></td><td><strong>2I 2S</strong></td></tr>
+        <tr><td>Downgraded</td><td>0</td><td>0</td><td>0</td></tr>
+        <tr><td>Dropped</td><td>0</td><td>0</td><td>1</td></tr>
+      </tbody>
+    </table>
+    <p>Claude provided the most value by volume and breadth. Codex&#39;s single Makefile finding was the highest-leverage individual insight of the round. Gemini&#39;s I3 would have been missed without it. All three were needed.</p>
+    </div>
+    <hr>
+    <h2 id="review-process-notes">Review Process Notes <a href="#review-process-notes" class="pilcrow">&#182;</a></h2>
+
+    <div class="card card-neutral">
+    <h3 id="skill-improvements">Skill improvements <a href="#skill-improvements" class="pilcrow">&#182;</a></h3>
+    <ul>
+      <li>[ ] Add a review dimension covering <code>runtime/debug.BuildInfo</code> field semantics: distinguish fields populated only for proxy-installed modules (<code>Main.Path</code>, <code>Main.Version</code>, <code>Main.Sum</code>) from build-time settings populated for any VCS build (<code>vcs.revision</code>, <code>vcs.modified</code>, <code>vcs.time</code>). Flag code that uses the proxy-only fields as cache keys or build identifiers — the path is always empty for <code>go build</code> binaries.</li>
+      <li>[ ] Add a review dimension covering <code>http.ServeMux</code> pattern collisions: any code that registers patterns derived from variable input (filesystem enumeration, configuration, plugin discovery) against the same mux as hand-registered patterns. ServeMux panics on duplicate registration; flag when no reserved-prefix check or <code>try</code>/<code>recover</code> guards the registration loop.</li>
+      <li>[ ] Add a review dimension covering SPA fallback handlers: any handler that unconditionally rewrites a missing path to <code>index.html</code> (or any HTML shell) should preserve the original extension&#39;s content-type semantics — extensioned 404s must propagate as 404s, not become HTML with status 200. The pattern recognizes both <code>embed.FS</code>-backed and on-disk static servers.</li>
+    </ul>
+    <h3 id="repo-context-updates">Repo context updates <a href="#repo-context-updates" class="pilcrow">&#182;</a></h3>
+    <p>None — the rancher-desktop-steve fork has not yet accumulated enough convention-specific guidance to warrant a <code>deep-review-context.md</code>.</p>
+    </div>
+  </main>
+  <script>window.Prism = window.Prism || {}; Prism.manual = true;</script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-go.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-diff.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-yaml.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+  <script>
+/* Deep Review — Prism initialization and line-number wrapping.
+ * Inlined into each generated HTML file by the beautify-review skill.
+ * Runs synchronously at the end of <body> — no event listeners.
+ *
+ * Prerequisite: a preceding <script> must set Prism.manual = true
+ * before the Prism core <script> loads.
+ */
+
+Prism.highlightAll();
+
+document.querySelectorAll('pre[data-start]').forEach(function(pre) {
+  var startLine = parseInt(pre.getAttribute('data-start'), 10) || 1;
+  var hlAttr = pre.getAttribute('data-line') || '';
+
+  /* Parse data-line into a Set of line numbers to highlight.
+   * Accepts comma-separated values: "75,76,77" or ranges: "75-84". */
+  var hlLines = new Set();
+  hlAttr.split(',').forEach(function(part) {
+    part = part.trim();
+    if (!part) return;
+    var m = part.match(/^(\d+)-(\d+)$/);
+    if (m) {
+      for (var i = parseInt(m[1], 10); i <= parseInt(m[2], 10); i++) hlLines.add(i);
+    } else {
+      hlLines.add(parseInt(part, 10));
+    }
+  });
+
+  var code = pre.querySelector('code');
+  if (!code) return;
+
+  var html = code.innerHTML;
+  var lines = html.split('\n');
+  /* Strip a trailing empty line that Prism sometimes leaves. */
+  if (lines.length > 0 && lines[lines.length - 1].trim() === '') lines.pop();
+
+  var wrapped = lines.map(function(line, idx) {
+    var lineNum = startLine + idx;
+    var cls = 'code-line' + (hlLines.has(lineNum) ? ' line-hl' : '');
+    return '<span class="' + cls + '">' + line + '</span>';
+  });
+
+  /* Join with '' (empty string) — NOT '\n'.
+   * Inside <pre>, newlines are literal whitespace. Since .code-line uses
+   * display: block, joining with '\n' produces double line spacing. */
+  code.innerHTML = wrapped.join('');
+  pre.style.counterReset = 'line ' + (startLine - 1);
+});
+
+/* GitHub reference tooltips — show title and state on hover for #N links.
+ * Links must have class="gh-ref" and data-title set by the generator. */
+document.querySelectorAll('a.gh-ref[data-title]').forEach(function(link) {
+  var tip = null;
+
+  link.addEventListener('mouseenter', function() {
+    if (tip) return;
+    tip = document.createElement('div');
+    tip.className = 'gh-tooltip';
+
+    var state = link.getAttribute('data-state') || '';
+    var type = link.getAttribute('data-type') || 'issue';
+    var label = state.charAt(0).toUpperCase() + state.slice(1).toLowerCase();
+
+    var pill = document.createElement('span');
+    pill.className = 'gh-tooltip-state gh-state-' + state;
+    pill.textContent = label + (type === 'pr' ? ' PR' : '');
+
+    var title = document.createElement('span');
+    title.className = 'gh-tooltip-title';
+    title.textContent = link.getAttribute('data-title');
+
+    tip.appendChild(pill);
+    tip.appendChild(title);
+    document.body.appendChild(tip);
+
+    var rect = link.getBoundingClientRect();
+    var tw = tip.offsetWidth;
+    var th = tip.offsetHeight;
+    var left = rect.left + window.scrollX;
+    var top = rect.top + window.scrollY - th - 8;
+
+    if (left + tw > window.innerWidth - 12) left = window.innerWidth - tw - 12;
+    if (left < 4) left = 4;
+    if (top < window.scrollY + 4) top = rect.bottom + window.scrollY + 8;
+
+    tip.style.left = left + 'px';
+    tip.style.top = top + 'px';
+    tip.style.opacity = '1';
+  });
+
+  link.addEventListener('mouseleave', function() {
+    if (tip) { tip.remove(); tip = null; }
+  });
+});
+
+  </script>
+</body>
+</html>
